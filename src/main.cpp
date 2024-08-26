@@ -21,6 +21,8 @@ void setup(){
   ledcSetup(PWM_CHANNEL, frequency, resoultion);
   ledcAttachPin(IN1, PWM_CHANNEL);
   ledcWrite(IN1, 0);                          // initially motor is off 
+  ledcAttachPin(IN2, PWM_CHANNEL);
+  ledcWrite(IN2, 0);  
 
 }
 void loop(){
@@ -28,7 +30,7 @@ void loop(){
   if (Serial.available() > 0)
   {
     
-   if(FAULT!= 0){                                     // to check whether the fault pin is high or low is low means fault is there
+   if(digitalRead(FAULT)!= 0){                                     // to check whether the fault pin is high or low is low means fault is there
     String input_from_user = Serial.readString();
     if (input_from_user.equals("slow"))
     {
