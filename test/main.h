@@ -11,19 +11,19 @@ const int slowSpeed   = 1365;                 //  25% duty cycle
 const int mediumSpeed = 2730;                 //  50% duty cycle
 const int fastSpeed   = 4096;                 //  100% duty cycle
 
-// void setup(){
-//   // Serial communication begin
-//   Serial.begin(115200);
-//   pinMode(IN1,OUTPUT);                         //  to enable forward direction 
-//   pinMode(IN2,OUTPUT);                         //  to enable reverse direction
-//   pinMode(FAULT,OPEN_DRAIN);                  //  to check for fault, if this pin is low then fault is there
-//   // PWM enable 
+void setup(){
+  // Serial communication begin
+  Serial.begin(115200);
+  pinMode(IN1,OUTPUT);                         //  to enable forward direction 
+  pinMode(IN2,OUTPUT);                         //  to enable reverse direction
+  pinMode(FAULT,OPEN_DRAIN);                  //  to check for fault, if this pin is low then fault is there
+  // PWM enable 
 
-//   ledcSetup(PWM_CHANNEL, frequency, resoultion);
-//   ledcAttachPin(IN1, PWM_CHANNEL);
-//   ledcWrite(IN1, 0);                          // initially motor is off 
+  ledcSetup(PWM_CHANNEL, frequency, resoultion);
+  ledcAttachPin(IN1, PWM_CHANNEL);
+  ledcWrite(PWM_CHANNEL, 0);                          // initially motor is off 
 
-// }
+}
 void pwm_ctrl(){
    
   if (Serial.available() > 0)
@@ -78,4 +78,10 @@ void pwm_ctrl(){
 
 
 }
+}
+
+void loop()
+{
+  pwm_ctrl();
+
 }
